@@ -1,0 +1,36 @@
+{
+  "source": {
+    "collection_id": "189",
+    "collection_metadata_url": "https://api-production.data.gov.sg/v2/public/api/collections/{collection_id}/metadata",
+    "dataset_metadata_url": "https://api-production.data.gov.sg/v2/public/api/datasets/{dataset_id}/metadata",
+    "download_api_url": "https://api-open.data.gov.sg/v1/public/api/datasets/{dataset_id}"
+  },
+  "scope": {
+    "start_month": "2012-01",
+    "end_month": "2017-12",
+    "reference_month": "2012-01"
+  },
+  "validation": {
+    "reference_columns": ["town", "flat_type", "flat_model"],
+    "storey_pattern": "^(\\d{2}) TO (\\d{2})$",
+    "numeric_columns": ["floor_area_sqm", "resale_price", "lease_commence_date"]
+  },
+  "lease": {
+    "lease_years": 99,
+    "as_of_date": "2027-01-01"
+  },
+  "anomaly": {
+    "group_columns": ["town", "flat_type", "sale_year"],
+    "iqr_multiplier": 3,
+    "min_group_size": 30
+  },
+  "hashing": {
+    "key_env_var": "RESALE_ID_HMAC_KEY"
+  },
+  "paths": {
+    "raw": "data/raw",
+    "silver": "data/silver",
+    "gold": "data/gold",
+    "log_file": "logs/pipeline.log"
+  }
+}
